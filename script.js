@@ -59,7 +59,7 @@ function playDifficulty() {
 function playFunction() {
 
     // Regole
-    alert("Arriva a un punteggio di 15 per vincere")
+    alert("Arriva a un punteggio di 15 prima che esplodano 3 bombe per vincere")
 
     // Reset FINESTRA
     if(finestra){
