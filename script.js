@@ -13,6 +13,7 @@ let punteggio;
 let score = false;
 let tentativiRimasti = false;
 let errors;
+let finestra;
 
 // Funzione RESET
 
@@ -56,6 +57,11 @@ function playDifficulty() {
 // Funzione PLAY
 
 function playFunction() {
+
+    // Reset FINESTRA
+    if(finestra){
+        document.body.removeChild(finestra);
+    }
 
     // Reset SCORE
     playReset();
@@ -119,44 +125,44 @@ function redOnclick () {
     this.classList.remove("pointer");
     this.removeEventListener("click", redOnclick);
     errors--;
-    //console.log("errori: ", errors);
+
     tentativiRimasti.innerHTML = errors;
     // condizione per sconfitta
     if(errors === 0) {
-        // setTimeout(() => { scopriTutto, 100});
         scopriTutto();
-        // return setTimeout(gameOver, 1000);
     }
 }
 
 // Funzione GAMEOVER
 
 function gameOver (){
-    alert("Hai perso!");
-    let newGame = prompt("Gioca ancora! Premi Ok se vuoi giocare, o scrivi 'no' se vuoi smettere");
-    if(newGame === "no"){
-        return;
-    }
-    else{
-        return playFunction();
-    }
+    // alert("Hai perso! Premi play per una nuova partita");
+    finestra = document.createElement("div");
+    finestra.innerHTML = "HAI PERSO!"
+    finestra.setAttribute("class", "gameover")
+    document.body.append(finestra);
+    console.log("finestra")
 }
 
 // Funzione che scopre la griglia
+
 function scopriTutto(){
     let finalGrid = document.getElementsByClassName("box");
-    console.log(finalGrid)
+
     for(i = 0; i < finalGrid.length; i++) {
         if (finalGrid[i].hasAttribute("bomba", true)){
             finalGrid[i].style.backgroundColor = "red";
             finalGrid[i].innerHTML = '<img class="bomb" src="img/bomb2.png"></img>';
+            finalGrid[i].removeEventListener("click", redOnclick);
+            finalGrid[i].classList.remove("pointer");
         }
         else {
             finalGrid[i].innerHTML = '';
             finalGrid[i].style.background = "#6495ED";
+            finalGrid[i].removeEventListener("click", blueOnclick);
+            finalGrid[i].classList.remove("pointer");
         }
+        
     }
-    
-    setTimeout(() => { gameOver(), 200});
-
+    setTimeout(() => { gameOver(), 700});
 }
