@@ -58,6 +58,9 @@ function playDifficulty() {
 
 function playFunction() {
 
+    // Regole
+    alert("Arriva a un punteggio di 15 per vincere")
+
     // Reset FINESTRA
     if(finestra){
         document.body.removeChild(finestra);
@@ -114,7 +117,11 @@ function blueOnclick () {
     console.log("salvo")
     this.removeEventListener("click", blueOnclick);
     punteggio++;
+    console.log(punteggio)
     score.innerHTML = punteggio;
+    if (punteggio == 15){
+        vittoria();
+    }
 }
 
 // Funzione BOMBA
@@ -135,13 +142,20 @@ function redOnclick () {
 
 // Funzione GAMEOVER
 
-function gameOver (){
-    // alert("Hai perso! Premi play per una nuova partita");
+function gameOver(){
     finestra = document.createElement("div");
     finestra.innerHTML = "HAI PERSO!"
     finestra.setAttribute("class", "gameover")
     document.body.append(finestra);
-    console.log("finestra")
+}
+
+// Funzione VITTORIA
+
+function vittoria() {
+    finestra = document.createElement("div");
+    finestra.innerHTML = "HAI VINTO!"
+    finestra.setAttribute("class", "vittoria")
+    document.body.append(finestra);
 }
 
 // Funzione che scopre la griglia
