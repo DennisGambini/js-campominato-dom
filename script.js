@@ -90,6 +90,7 @@ function playFunction() {
             // cambio classe
             boxes[n].removeEventListener("click", blueOnclick);
             boxes[n].addEventListener("click", redOnclick);
+            boxes[n].setAttribute("bomba", true);
     
             counter++;
         }
@@ -113,7 +114,7 @@ function blueOnclick () {
 // Funzione BOMBA
 
 function redOnclick () {
-    this.innerHTML = '<img class="bomb" src="img/bomb2.png">'
+    this.innerHTML = '<img class="bomb" src="img/bomb2.png">';
     this.style.background = "red";
     this.classList.remove("pointer");
     this.removeEventListener("click", redOnclick);
@@ -122,14 +123,16 @@ function redOnclick () {
     tentativiRimasti.innerHTML = errors;
     // condizione per sconfitta
     if(errors === 0) {
-        setTimeout(() => { alert('Hai perso') }, 100);
-        return setTimeout(gameOver, 1000);
+        // setTimeout(() => { scopriTutto, 100});
+        scopriTutto();
+        // return setTimeout(gameOver, 1000);
     }
 }
 
 // Funzione GAMEOVER
 
 function gameOver (){
+    alert("Hai perso!");
     let newGame = prompt("Gioca ancora! Premi Ok se vuoi giocare, o scrivi 'no' se vuoi smettere");
     if(newGame === "no"){
         return;
@@ -137,4 +140,23 @@ function gameOver (){
     else{
         return playFunction();
     }
+}
+
+// Funzione che scopre la griglia
+function scopriTutto(){
+    let finalGrid = document.getElementsByClassName("box");
+    console.log(finalGrid)
+    for(i = 0; i < finalGrid.length; i++) {
+        if (finalGrid[i].hasAttribute("bomba", true)){
+            finalGrid[i].style.backgroundColor = "red";
+            finalGrid[i].innerHTML = '<img class="bomb" src="img/bomb2.png"></img>';
+        }
+        else {
+            finalGrid[i].innerHTML = '';
+            finalGrid[i].style.background = "#6495ED";
+        }
+    }
+    
+    setTimeout(() => { gameOver(), 200});
+
 }
