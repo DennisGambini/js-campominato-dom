@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+.wrapper{
+    height: 100vh;
+    width: 100vw;
+}
+
+/* header */
+header{
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+}
+#logo-section{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    gap: 30px;
+}
+#logo-section>h1{
+    text-transform: capitalize;
+}
+#logo-section>img{
+    height: 60%;
+}
+
+/* main */
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #7FFFD4;
+    height: calc(100vh - 120px);
+}
+.container{
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-flow: wrap;
+}
+.box{
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+.pointer{
+    cursor: pointer;
+}
+.box-easy{
+    height: calc(100% / 10);
+    width: calc(100% / 10);
+}
+.box-hard{
+    height: calc(100% / 9);
+    width: calc(100% / 9);
+}
+.box-crazy{
+    height: calc(100% / 7);
+    width: calc(100% / 7);
+}
+
+/* footer */
+footer{
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 30px;    
+}
+footer>span>span{
+    color: red;
+}
+
+.bomb{
+    height: 80%;
+}
+footer a{
+    text-decoration: none;
+}
+
+/* media */
+@media screen and (min-width: 700px) {
+    header{
+        padding: 0 100px;
+    }
+    footer{
+        padding: 0 100px;
+    }
+}
+@media screen and (min-width: 1000px) {
+    header{
+        padding: 0 200px;
+    }
+    footer{
+        padding: 0 200px;
+    }
+    #difficulty-section #difficulty{
+        width: 130px;
+    }
+    #difficulty-section #play{
+        width: 80px;
+    }
+}
+@media screen and (max-width: 600px) {
+    header h1{
+        font-size: 1.2em;
+    }
+}
+
+/* classi per js */
+.score{
+    color: white;
+    padding: 10px;
+    background-color: rgba(37, 90, 146, 0.7);
+    position: absolute;
+    top: 100px;
+    right: 10px;
+}
+.score::before{
+    content: 'Score : ';
+}
+
+.tentativi{
+    color: white;
+    padding: 10px;
+    background-color: rgba(190, 31, 31, 0.7);
+    position: absolute;
+    top: 130px;
+    left: 10px;
+}
+.tentativi::before{
+    content: 'Tentativi rimasti : ';
+}
